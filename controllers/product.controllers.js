@@ -1,3 +1,4 @@
+const { send } = require("express/lib/response");
 const Product = require("../models/product.models");
 
 const createProduct = async (req, res) => {
@@ -14,7 +15,7 @@ const createProduct = async (req, res) => {
 	}
 };
 
-//get product by id
+
 
 //get products
 
@@ -32,5 +33,52 @@ const updateProduct = async (req, res) => {
 		return res.status(500).json(err);
 	}
 };
+const getProducts = async (req,res) =>{
+
+
+try {
+	const getProducts=   await Product.find({});
+	return res.status(200).json(getProducts);
+} catch (err) {
+	return res.status(500).json(err);
+}
+
+
+}
+//get product by id
+const getProduct = async (req,res) =>{
+	const id = req.params.productId;
+
+	try {
+		const getProduct=   await Product.findById(id);
+	//	return res.status(200).json(getProduct);
+		return res.status(200).send("raw tfasa5");
+	} catch (err) {
+		return res.status(500).json(err);
+	}
+	
+	
+	}
+
+	const deleteProduct = async (req,res) =>{
+		const id = req.params.productId;
+	
+		try {
+			const deleteProduct=   await Product.findOneAndDelete(id)
+			return res.status(200).json(deleteProduct);
+		} catch (err) {
+			return res.status(500).json(err);
+		}
+		
+		
+		}
+
+
+
+
+
 module.exports.createProduct = createProduct;
 module.exports.updateProduct = updateProduct;
+module.exports.getProducts = getProducts;
+module.exports.getProduct = getProduct;
+module.exports.deleteProduct = deleteProduct;
