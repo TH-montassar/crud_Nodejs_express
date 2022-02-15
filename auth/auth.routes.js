@@ -63,7 +63,7 @@ router.post("/login", async (req, res) => {
     return res
       .status(200)
       .json({ user: user, token: token })
-      .populate("address");
+     
     res.status(201).json("connected");
   } catch (err) {
     return res.status(500).json(err);

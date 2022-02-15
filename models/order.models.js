@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    addressId: {
+    address: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Address",
       required: true,
@@ -17,10 +17,10 @@ const orderSchema = new mongoose.Schema(
     },
     items: [
       {
-        productId: {
+       
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
-        },
+        
       },
     ],
     paymentStatus: {
