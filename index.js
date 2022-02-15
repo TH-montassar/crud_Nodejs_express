@@ -17,6 +17,7 @@ mongoose.connection.on("error", (err) => {
 const productRouter = require("./routes/product.routes");
 const categoryRouter = require("./routes/category.routes");
 const authRouter = require("./auth/auth.routes");
+const  addressRouter =require("./routes/address.routes")
 //middlewares
 
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/products", productRouter);
 app.use("/categories",categoryRouter);
 app.use("/auth",authRouter);
+app.use("/address", addressRouter)
 //server listening
 const port = process.env.PORT || 8000;
 app.listen(port, () => {

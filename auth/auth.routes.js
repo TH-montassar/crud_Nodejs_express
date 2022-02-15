@@ -56,13 +56,16 @@ router.post("/login", async (req, res) => {
     }
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      process.env.TOKENKEY,
+      process.env.TOKEN_KEY,
       { expiresIn: "2days" }
     );
 
-    return res.status(200).json({ user: user, token: token });
+    return res
+      .status(200)
+      .json({ user: user, token: token })
+      .populate("address");
     res.status(201).json("connected");
-  } catch (error) {
+  } catch (err) {
     return res.status(500).json(err);
   }
 });
